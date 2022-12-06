@@ -5,122 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>on Cup</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
-        
-        body {
-            width: 100%;
-            height: 100%;
-            display: block;
-            font-family: 'Manrope', sans-serif;
-            font-style: normal;
-            font-weight: 700;
-            font-family: 'Raleway', sans-serif;
-            background-color: #F9D3AF;
-            color: #F8F3ED;
-        }
+    <link href="style.css" rel="stylesheet">
 
-        #bob {
-            width: 380px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            top: 50px;
-        }
-
-        #play2 {
-            animation-duration: 1.2s;
-            animation-iteration-count:infinite;
-            animation-name: slidein;
-            position: relative;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #pic {
-            top: -60px;
-            position: relative;
-
-        }
-
-        input{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            font-family: 'Manrope', sans-serif;
-            font-style: normal;
-            font-weight: 100;
-        }
-
-        #title {
-            font-size: 26px;
-            text-align: center;
-        }
-
-        #sum {
-            font-size: 96px;
-            text-align: center;
-        }
-
-        #date {
-            font-size: 32px;
-            text-align: center;
-        }
-
-        #in {
-            width: 250px;
-            height: 65px;
-            text-align: center;
-            background: linear-gradient(267.04deg, rgba(235, 201, 167, 0.88) 0.68%, rgba(235, 201, 167, 0.14) 102.36%);
-            border-radius: 71px;
-            border: 0pt;
-            font-weight: 700;
-            font-size: 36px;
-            color: #F8F3ED;
-            top: -60px;
-            position: relative;
-        }
-
-        #ch1 {
-            color: #F8F3ED;
-        }
-
-        #ch2 {
-            color: #F9D3AF;
-        }
-
-        #probel {
-            color: #F9D3AF;
-        }
-
-        #about {
-            margin-left: auto;
-            margin-right: auto;
-            width: 85%;
-            padding: 5px;
-            display: block;
-            background: #001AFF;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        a {
-            color: #F8F3ED;
-        }
-
-        @keyframes slidein {
-            from {
-                transform: scale(1, 1);
-            }
-            25% {
-                transform: scale(1.05, 1.1);
-            }
-            to {
-                transform: scale(1, 1);
-            }
-        }
-    </style>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 
 <body>
@@ -141,82 +27,11 @@
         </div>
         <input id="in" type="text" inputmode="numeric" placeholder="Стоимость">
         <audio id="sok"
-            src="drink-coffee.mp3">
+            src="/media/drink-coffee.mp3">
         </audio>
     </div>
 
-<script>
-    var date = new Date;
-    console.log(date);
-    var sumMonth = 0;
-    var sumDay =0;
-    var check = 1;
-
-
-    let tg = window.Telegram.WebApp;
-    tg.expand(); //расширяем на все окно  
-
-
-    function addSum() {
-        sumDay = Number(sumDay) + Number ( document.querySelector('#in').value);
-        sumMonth = Number(sumMonth) + Number ( document.querySelector('#in').value);
-        var temp = {};
-        temp.day = date.getDate();
-        temp.sum = sumDay;
-        temp.month = date.getMonth();
-        temp.summonth = sumMonth;
-        localStorage.setItem("onCup", JSON.stringify(temp));
-        document.querySelector('#in').value = "";
-        if (check === 1) {
-            document.querySelector('#sum').textContent = sumDay;
-        } else if (check === 2) {
-            document.querySelector('#sum').textContent = sumMonth;   
-        }
-    }
-
-    if (localStorage.getItem("onCup") == undefined ) {
-        addSum();
-    } else {
-        var temp;
-        temp = JSON.parse(localStorage.getItem("onCup"));
-        sumMonth = Number(temp.summonth);
-        if (temp.day ===  date.getDate()) {
-            sumDay = Number(temp.sum);
-        } else {
-            sumDay = 0;
-            addSum();
-        }
-        if (temp.month ===  date.getMonth()) {
-            sumMonth = Number(temp.summonth);
-        } else {
-            sumMonth = 0;
-            addSum();
-        }
-        document.querySelector('#sum').textContent = sumDay;
-    }
-
-    document.querySelector("#day").onclick = function() {
-        document.querySelector("#ch1").style.color = "#F8F3ED";
-        document.querySelector("#ch2").style.color = "#F9D3AF";
-        document.querySelector('#sum').textContent = sumDay;
-        check = 1;
-    }
-
-    document.querySelector("#month").onclick = function() {
-        document.querySelector("#ch2").style.color = "#F8F3ED";
-        document.querySelector("#ch1").style.color = "#F9D3AF";
-        document.querySelector('#sum').textContent = sumMonth; 
-        check = 2;  
-    }
-
-    let player = document.querySelector("lottie-player");    
-    document.querySelector("#pic").onclick = function() {
-        player.stop();
-        player.play();
-        document.querySelector("#sok").play();
-        addSum();
-    }
-
-</script>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script src="/script.js"></script>
 </body>
 </html>
