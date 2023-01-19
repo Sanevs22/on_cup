@@ -61,10 +61,12 @@ document.querySelector("#month").onclick = function() {
     check = 2;  
 }
 
-let player = document.querySelector("lottie-player");    
-document.querySelector("#pic").onclick = function() {
+let player = document.querySelector("lottie-player");  
+document.querySelector("#pic").addEventListener("click", () => {
+//document.querySelector("#pic").onclick = function() {
     player.stop();
     player.play();
     document.querySelector("#sok").play();
     addSum();
-}
+    }
+)
