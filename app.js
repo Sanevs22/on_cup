@@ -5,8 +5,8 @@ var sumDay =0;
 var check = 1;
 
 
-//let tg = window.Telegram.WebApp;
-//tg.expand(); //расширяем на все окно  
+let tg = window.Telegram.WebApp;
+tg.expand(); //расширяем на все окно  
 
 
 function addSum() {
